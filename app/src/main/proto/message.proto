@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "com.iamhere.data.proto";
+option java_multiple_files = true;
+
+message MeshPacket {
+  string packet_id = 1;
+  string sender_pub_key = 2;
+  int64 timestamp = 3;
+  int32 ttl = 4;
+  oneof payload_type {
+    TextMessage text = 5;
+    KeyExchange key_exchange = 6;
+    SyncRequest sync_req = 7;
+    SyncResponse sync_res = 8;
+  }
+}
+
+message TextMessage {
+  bytes encrypted_content = 1;
+  string recipient_pub_key = 2;
+}
+
+message KeyExchange {
+  bytes public_key = 1;
+  bytes signature = 2;
+}
+
+message SyncRequest {
+  repeated string known_packet_ids = 1;
+}
+
+message SyncResponse {
+  repeated MeshPacket missing_packets = 1;
+}

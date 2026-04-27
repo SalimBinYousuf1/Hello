@@ -1,0 +1,4 @@
+-keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
+-keep class * extends com.google.protobuf.AbstractMessageLite { *; }
+-keep class org.libsodium.jni.NaCl { *; }
+-keep class org.libsodium.jni.SodiumJNI { *; }
